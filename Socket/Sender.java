@@ -27,13 +27,13 @@ public class Sender
 		{  
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Enter data to be sent"); 
-            long data = scan.nextInt();
+            int data = scan.nextInt();
 		
 			
 			int size=(int)Math.ceil(Math.log(data)/Math.log(65536)); //To find the number of Datawords to to be sent 
             System.out.println("Number of datawords = "+size);
-            long output[]= new long[size+1];   // In order to store the checksum as well and subsequently send it to reciever for error detection
-            long sum=0;
+            int output[]= new int[size+1];   // In order to store the checksum as well and subsequently send it to reciever for error detection
+            int sum=0;
             int i=0;
             System.out.println("====================================================================");
             System.out.println("Breaking the data to be sent in units of 16 bits ........");
@@ -63,8 +63,8 @@ public class Sender
         // Sends the data one by one to receiver
         System.out.print("| "); 
         for (int j = 0; j < output.length; j++){
-            System.out.print(Long.toBinaryString(output[j])+" | ");
-            dos.writeLong(output[j]); 
+            System.out.print(Integer.toBinaryString(output[j])+" | ");
+            dos.writeInt(output[j]); 
         } 
 
         System.out.println();

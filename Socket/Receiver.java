@@ -30,7 +30,7 @@ public class Receiver {
             int length = dis.readInt(); 
               
             // Initializes the arrays based on data length received 
-            long data[] = new long[length]; 
+            int data[] = new int[length]; 
               
             System.out.println("Data received (Last data represents the checksum) is"); 
               
@@ -38,11 +38,11 @@ public class Receiver {
             {    
                 // Reading the data being sent one by one 
                 data[i] = dis.readInt(); 
-                System.out.println(Long.toBinaryString(data[i]));                 
+                System.out.println(Integer.toBinaryString(data[i]));                 
                 sum+=data[i];
             } 
             sum%=65536; //To remove carry and overflow
-            System.out.println("Sum = " + "(" + sum + ")10" + " = " + "(" + Long.toBinaryString(sum) + ")2");
+            System.out.println("Sum = " + "(" + sum + ")10" + " = " + "(" + Integer.toBinaryString(sum) + ")2");
 
             int output=0;
             
