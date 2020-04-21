@@ -24,7 +24,7 @@ public class Receiver {
           
         while (true) 
         {   Scanner scan = new Scanner(System.in); 
-            int sum=0; 
+            long sum=0; 
               
             // Reads the data length sent by sender 
             int length = dis.readInt(); 
@@ -42,13 +42,13 @@ public class Receiver {
                 sum+=data[i];
             } 
             sum%=65536; //To remove carry and overflow
-            System.out.println("Sum = " + "(" + sum + ")10" + " = " + "(" + Integer.toBinaryString(sum) + ")2");
+            System.out.println("Sum = " + "(" + sum + ")10" + " = " + "(" + Long.toBinaryString(sum) + ")2");
 
-            int output=0;
+            long output=0;
             
             for(int i=data.length-2;i>=0;i--){
                 output*=65536;
-                output+=data[i];
+                output+=(long)data[i];
             }
             System.out.println("=======================================================");
 

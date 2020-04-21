@@ -27,20 +27,20 @@ public class Sender
 		{  
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Enter data to be sent"); 
-            int data = scan.nextInt();
+            long data = scan.nextLong();
 		
 			
 			int size=(int)Math.ceil(Math.log(data)/Math.log(65536)); //To find the number of Datawords to to be sent 
             System.out.println("Number of datawords = "+size);
             int output[]= new int[size+1];   // In order to store the checksum as well and subsequently send it to reciever for error detection
-            int sum=0;
+            long sum=0;
             int i=0;
             System.out.println("====================================================================");
             System.out.println("Breaking the data to be sent in units of 16 bits ........");
             
             while(data!=0){   //initialized the counter for output array and added cond. for data to be divided into 16 bits
                 
-                output[i]=data%65536;   //taken rightmost 16 bits 
+                output[i]=(int)(data%65536);   //taken rightmost 16 bits 
                 
                 System.out.println((i+1)+ " Unit = " + output[i]);
                 
@@ -51,7 +51,7 @@ public class Sender
                 data/=65536;
         }
 
-        output[i]=sum^65535;
+        output[i]=(int)sum^65535;
         System.out.println("Checksum = "+ output[i]);
 
         // Sends the data length to Receiver 
@@ -63,7 +63,7 @@ public class Sender
         // Sends the data one by one to receiver
         System.out.print("| "); 
         for (int j = 0; j < output.length; j++){
-            System.out.print(Integer.toBinaryString(output[j])+" | ");
+            System.out.print(Long.toBinaryString(output[j])+" | ");
             dos.writeInt(output[j]); 
         } 
 
